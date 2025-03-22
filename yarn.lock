@@ -820,6 +820,16 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@openzeppelin/contracts-upgradeable@^4.4.2", "@openzeppelin/contracts-upgradeable@^4.9.3":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts-upgradeable/-/contracts-upgradeable-4.9.6.tgz#38b21708a719da647de4bb0e4802ee235a0d24df"
+  integrity sha512-m4iHazOsOCv1DgM7eD7GupTJ+NFVujRZt1wzddDPSVGpWdKq1SKkla5htKG7+IS4d2XOCtzkUNwRZ7Vq5aEUMA==
+
+"@openzeppelin/contracts@^4.9.3":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.9.6.tgz#2a880a24eb19b4f8b25adc2a5095f2aa27f39677"
+  integrity sha512-xSmezSupL+y9VkHZJGDoCBpmnB2ogM13ccaYDWqJTfS3dbuHkgjuwDFUmaFauBCboQMGB/S5UqUl2y54X99BmA==
+
 "@passwordless-id/webauthn@^2.1.2":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@passwordless-id/webauthn/-/webauthn-2.3.0.tgz#79aec26c83a93fd4f95284f8ae3e01e4ee3210ec"
@@ -1190,6 +1200,22 @@
   integrity sha512-u/n2HsQeH1vpZIOzB/w2lqKlXUDUKo6BxTdGXSMvNzIq5MHYFckRMVuFABp+QB7RN8LFXWV6X1/oSkuDq+MPIA==
   dependencies:
     "@tanstack/query-core" "5.67.3"
+
+"@thirdweb-dev/contracts@^3.15.0":
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/@thirdweb-dev/contracts/-/contracts-3.15.0.tgz#2d8dd4f6f2ec93dc22ae5b60240379bcc2f7d37a"
+  integrity sha512-sIXPy6zNqW9K9h8xgCnsRQVrqmmMdxoDqut4eAZj1CJzMax5TyrNBoSYCfAX0et8KApvBeCVeJQhUHSWpBNIVw==
+  dependencies:
+    "@openzeppelin/contracts" "^4.9.3"
+    "@openzeppelin/contracts-upgradeable" "^4.9.3"
+    "@thirdweb-dev/dynamic-contracts" "^1.2.4"
+    erc721a-upgradeable "^3.3.0"
+    solady "0.0.180"
+
+"@thirdweb-dev/dynamic-contracts@^1.2.4":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@thirdweb-dev/dynamic-contracts/-/dynamic-contracts-1.2.5.tgz#f9735c0d46198e7bf2f98c277f0a9a79c54da1e8"
+  integrity sha512-YVsz+jUWbwj+6aF2eTZGMfyw47a1HRmgNl4LQ3gW9gwYL5y5+OX/yOzv6aV5ibvoqCk/k10aIVK2eFrcpMubQA==
 
 "@types/babel__core@^7.20.5":
   version "7.20.5"
@@ -2049,6 +2075,13 @@ end-of-stream@^1.4.1:
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
   dependencies:
     once "^1.4.0"
+
+erc721a-upgradeable@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/erc721a-upgradeable/-/erc721a-upgradeable-3.3.0.tgz#c7b481668694756120868261fe98ab3a245a06b4"
+  integrity sha512-ILE0SjKuvhx+PABG0A/41QUp0MFiYmzrgo71htQ0Ov6JfDOmgUzGxDW8gZuYfKrdlYjNwSAqMpUFWBbyW3sWBA==
+  dependencies:
+    "@openzeppelin/contracts-upgradeable" "^4.4.2"
 
 error-ex@^1.3.1:
   version "1.3.2"
@@ -3357,6 +3390,11 @@ slash@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
+
+solady@0.0.180:
+  version "0.0.180"
+  resolved "https://registry.yarnpkg.com/solady/-/solady-0.0.180.tgz#d806c84a0bf8b6e3d85a8fb0978980de086ff59e"
+  integrity sha512-9QVCyMph+wk78Aq/GxtDAQg7dvNoVWx2dS2Zwf11XlwFKDZ+YJG2lrQsK9NEIth9NOebwjBXAYk4itdwOOE4aw==
 
 sonic-boom@^2.2.1:
   version "2.8.0"
