@@ -1,5 +1,5 @@
 // src/Navbar.tsx
-import { ConnectButton, darkTheme } from "thirdweb/react";
+import { ConnectButton, darkTheme, useActiveWallet } from "thirdweb/react";
 import { client } from "./client";
 import {
   inAppWallet,
@@ -30,30 +30,42 @@ const wallets = [
 ];
 
 export function Navbar() {
+  const wallet = useActiveWallet();
+
   return (
     <div
-      className="sticky top-0 z-50 w-full bg-zinc-900 py-4 px-6 shadow-md flex items-center justify-end"
+      className="sticky top-0 z-50 w-full bg-zinc-900 py-4 px-6 shadow-md flex items-center justify-end gap-4"
       style={{ borderBottom: "1px solid hsl(294, 100%, 60%)" }}
     >
-      <div className="relative group">
-        <ConnectButton
-          client={client}
-          wallets={wallets}
-          theme={darkTheme({
-            colors: { accentText: "hsl(294, 100%, 60%)" },
-          })}
-          connectButton={{ label: "Sign In" }}
-          connectModal={{
-            size: "compact",
-            showThirdwebBranding: false,
-          }}
-        />
-        <div className="absolute right-0 mt-2 w-64 p-3 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-          <span style={{ color: "hsl(294, 100%, 60%)" }}>
-            Network transactions cost ~3 cents. Please add & keep at least a dollar worth of ETH in your account for this.
-          </span>
-          <br /><br />
-          You can click "Buy" to get ETH.
+      <div className="flex items-center gap-3">
+        <button
+          className="px-4 py-2 border rounded text-sm text-white bg-black"
+          style={{ borderColor: "hsl(294, 100%, 60%)", borderWidth: 1 }}
+          disabled={!wallet}
+        >
+          Daily Check-In
+        </button>
+
+        <div className="relative group">
+          <ConnectButton
+            client={client}
+            wallets={wallets}
+            theme={darkTheme({
+              colors: { accentText: "hsl(294, 100%, 60%)" },
+            })}
+            connectButton={{ label: "Sign In" }}
+            connectModal={{
+              size: "compact",
+              showThirdwebBranding: false,
+            }}
+          />
+          <div className="absolute right-0 mt-2 w-64 p-3 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+            <span style={{ color: "hsl(294, 100%, 60%)" }}>
+              Network transactions cost ~3 cents. Please add & keep at least a dollar worth of ETH in your account for this.
+            </span>
+            <br /><br />
+            You can click "Buy" to get ETH.
+          </div>
         </div>
       </div>
     </div>
