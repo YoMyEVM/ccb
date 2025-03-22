@@ -12,7 +12,7 @@ import FunAppPage from "./pages/FunAppPage";
 import ProAppPage from "./pages/ProAppPage";
 import DataAppPage from "./pages/DataAppPage";
 import IsaiAppPage from "./pages/IsaiAppPage";
-import Shop from "./pages/ShopPage";
+import Claim from "./pages/ClaimPage";
 
 import "./index.css";
 
@@ -25,7 +25,7 @@ createRoot(document.getElementById("root")!).render(
             <Route index element={<App />} />
             <Route path="xp-zone" element={<XPZone />} />
             <Route path="leaderboard" element={<Leaderboard />} />
-            <Route path="shop" element={<Shop />} /> {/* ✅ Add this line */}
+            <Route path="Claim" element={<Claim />} /> {/* ✅ Add this line */}
 
             <Route path="fun" element={<FunAppPage />} />
             <Route path="pro" element={<ProAppPage />} />

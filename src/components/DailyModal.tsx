@@ -15,7 +15,7 @@ export const DailyModal: React.FC<DailyModalProps> = ({ isOpen, onClose }) => {
       try {
         const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
         const data = await res.json();
-        const usdValue = (data.ethereum.usd * 0.00088).toFixed(2);
+        const usdValue = (data.ethereum.usd * 0.00111).toFixed(2);
         setEthPrice(usdValue);
       } catch (err) {
         console.error("Failed to fetch ETH price", err);
@@ -63,7 +63,7 @@ export const DailyModal: React.FC<DailyModalProps> = ({ isOpen, onClose }) => {
             className="mt-2 w-full py-3 text-lg font-bold text-black border rounded hover:bg-zinc-800"
             style={{ background: "hsl(136, 61.30%, 50.40%)", borderColor: "hsl(294, 100%, 60%)" }}
           >
-            Check In for 0.00088 ETH{ethPrice ? ` ($${ethPrice})` : ""}
+            Check In for 0.00111 ETH{ethPrice ? ` ($${ethPrice})` : ""}
           </button>
 
           <button

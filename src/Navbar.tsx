@@ -64,11 +64,11 @@ export function Navbar() {
           <Link to="/xp-zone" className="text-white text-2xl hover:text-[#0edbe5]">
             XP Zone
           </Link>
-          <Link to="/shop" className="text-white text-2xl hover:text-[#0edbe5]">
-            Shop
+          <Link to="/Claim" className="text-white text-2xl hover:text-[#0edbe5]">
+            Claim
           </Link>
           <Link to="/leaderboard" className="text-white text-2xl hover:text-[#0edbe5]">
-            Leaderboard
+            Leaders
           </Link>
 
         </div>
