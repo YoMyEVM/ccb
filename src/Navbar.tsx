@@ -64,12 +64,13 @@ export function Navbar() {
           <Link to="/xp-zone" className="text-white text-2xl hover:text-[#0edbe5]">
             XP Zone
           </Link>
-          <Link to="/leaderboard" className="text-white text-2xl hover:text-[#0edbe5]">
-            Leaderboard
-          </Link>
           <Link to="/shop" className="text-white text-2xl hover:text-[#0edbe5]">
             Shop
           </Link>
+          <Link to="/leaderboard" className="text-white text-2xl hover:text-[#0edbe5]">
+            Leaderboard
+          </Link>
+
         </div>
 
         <div className="flex items-center gap-3">
