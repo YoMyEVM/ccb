@@ -31,7 +31,10 @@ const wallets = [
 
 export function Navbar() {
   return (
-    <div className="sticky top-0 z-50 w-full bg-zinc-900 py-4 px-6 shadow-md border-b border-zinc-800 flex items-center justify-end">
+    <div
+      className="sticky top-0 z-50 w-full bg-zinc-900 py-4 px-6 shadow-md flex items-center justify-end"
+      style={{ borderBottom: "1px solid hsl(294, 100%, 60%)" }}
+    >
       <div className="relative group">
         <ConnectButton
           client={client}
