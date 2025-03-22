@@ -14,12 +14,8 @@ export function App() {
 
 function Header() {
   return (
-    <header className="flex flex-col items-center mb-20 md:mb-20">
-      <h1 className="text-2xl md:text-6xl font-bold tracking-tighter mt-1 -mb-10 text-zinc-100">
-        My EVM
-        <span className="text-zinc-300 inline-block mx-1"> </span>
-        <span className="inline-block -skew-x-6" style={{ color: 'hsl(294, 100%, 60%)' }}>.xyz</span>
-      </h1>
+    <header className="flex flex-col items-center mb-10 mt-10 md:mb-10">    
+      <span className="inline-block -skew-x-6 text-2xl" style={{ color: 'hsl(0, 0.00%, 93.70%)' }}>Check-In Daily To Level Up</span>      
     </header>
   );
 }

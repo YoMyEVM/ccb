@@ -56,7 +56,7 @@ export const DailyModal: React.FC<DailyModalProps> = ({ isOpen, onClose }) => {
 
           <img src="/xpnft.png" alt="XP NFT" className="w-84 h-84 object-contain" />
 
-          <h2 className="text-2xl -mt-12 font-bold text-center text-green-500">Check-In</h2>
+          <h2 className="text-2xl -mt-12 font-bold text-center" style={{ color: '#0edbe5' }}>Check-In</h2>
           <p className="text-4xl font-semibold text-center text-white">+300 XP</p>
 
           <button
