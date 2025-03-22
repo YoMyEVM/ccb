@@ -32,18 +32,23 @@ const wallets = [
 export function Navbar() {
   return (
     <div className="sticky top-0 z-50 w-full bg-zinc-900 py-4 px-6 shadow-md border-b border-zinc-800 flex items-center justify-end">
-      <ConnectButton
-        client={client}
-        wallets={wallets}
-        theme={darkTheme({
-          colors: { accentText: "hsl(294, 100%, 60%)" },
-        })}
-        connectButton={{ label: "Sign In" }}
-        connectModal={{
-          size: "compact",
-          showThirdwebBranding: false,
-        }}
-      />
+      <div className="relative group">
+        <ConnectButton
+          client={client}
+          wallets={wallets}
+          theme={darkTheme({
+            colors: { accentText: "hsl(294, 100%, 60%)" },
+          })}
+          connectButton={{ label: "Sign In" }}
+          connectModal={{
+            size: "compact",
+            showThirdwebBranding: false,
+          }}
+        />
+        <div className="absolute right-0 mt-2 w-64 p-3 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+          Network transactions cost ~3 cents. Please add & keep a dollar worth of eth in your account.<br />Click to Buy ETH in the modal.<br />
+        </div>
+      </div>
     </div>
   );
 }
