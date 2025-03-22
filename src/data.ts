@@ -2,21 +2,21 @@
 
 export const articleData = [
     {
-      title: "thirdweb SDK Docs",
+      title: "Coming Soon",
       href: "https://portal.thirdweb.com/typescript/v5",
-      description: "thirdweb TypeScript SDK documentation",
+      description: "Soon",
       image: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
     },
     {
-      title: "Components and Hooks",
+      title: "Coming Soon",
       href: "https://portal.thirdweb.com/typescript/v5/react",
-      description: "Learn about the thirdweb React components and hooks in thirdweb SDK",
+      description: "Soon",
       image: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
     },
     {
-      title: "thirdweb Dashboard",
+      title: "Coming Soon",
       href: "https://thirdweb.com/dashboard",
-      description: "Deploy, configure, and manage your smart contracts from the dashboard.",
+      description: "Soon",
       image: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
     },
   ];
