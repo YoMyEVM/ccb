@@ -53,7 +53,7 @@ export function Navbar() {
       >
         <div className="flex items-center gap-4">
           <Link to="/">
-            <img src="/myevmlogo.png" alt="My EVM Logo" className="h-10 w-auto" />
+            <img src="/myevmlogo.png" alt="My EVM Logo" className="h-11 w-auto" />
           </Link>
           <Link to="/xp-zone" className="text-white text-sm hover:text-pink-400">
             XP Zone
