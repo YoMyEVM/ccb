@@ -55,15 +55,20 @@ export function Navbar() {
           <Link to="/">
             <img src="/myevmlogo.png" alt="My EVM Logo" className="h-11 w-auto" />
           </Link>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tighter -mb-1 text-zinc-100">
+          <Link to="/" className="text-2xl md:text-3xl font-bold tracking-tighter -mb-1 text-zinc-100">
             MyEVM
-            <span className="text-zinc-300 inline-block mx-1"> </span>
-          </h1>
-          <Link to="/xp-zone" className="text-white text-sm hover:text-pink-400">
+          </Link>
+        </div>
+
+        <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-6">
+          <Link to="/xp-zone" className="text-white text-2xl hover:text-[#0edbe5]">
             XP Zone
           </Link>
-          <Link to="/leaderboard" className="text-white text-sm hover:text-pink-400">
+          <Link to="/leaderboard" className="text-white text-2xl hover:text-[#0edbe5]">
             Leaderboard
+          </Link>
+          <Link to="/shop" className="text-white text-2xl hover:text-[#0edbe5]">
+            Shop
           </Link>
         </div>
 
@@ -90,11 +95,14 @@ export function Navbar() {
               }}
             />
             <div className="absolute right-0 mt-2 w-64 p-3 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-              <span style={{ color: "hsl(294, 100%, 60%)" }}>
-                Network transactions cost ~3 cents. Please add & keep at least a dollar worth of ETH in your account for this.
+              <span style={{ color: "#0edbe5" }}>
+                Network transactions cost ~3 cents.
+              </span>{" "}
+              <span>
+                Please add & keep at least a dollar worth of ETH in your account for this.
+                <br /><br />
+                You can click "Buy" to get ETH.
               </span>
-              <br /><br />
-              You can click "Buy" to get ETH.
             </div>
           </div>
         </div>
