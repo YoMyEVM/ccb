@@ -26,7 +26,7 @@ function Header() {
 
 function ThirdwebResources() {
   return (
-    <div className="grid gap-4 lg:grid-cols-3 justify-center">
+    <div className="grid gap-4 lg:grid-cols-4 justify-center">
       {articleData.map((item, i) => (
         <ArticleCard key={i} {...item} />
       ))}
