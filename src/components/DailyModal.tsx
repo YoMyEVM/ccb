@@ -1,5 +1,5 @@
 // src/components/DailyModal.tsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface DailyModalProps {
   isOpen: boolean;
@@ -7,6 +7,23 @@ interface DailyModalProps {
 }
 
 export const DailyModal: React.FC<DailyModalProps> = ({ isOpen, onClose }) => {
+  const [ethPrice, setEthPrice] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      try {
+        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
+        const data = await res.json();
+        const usdValue = (data.ethereum.usd * 0.00055).toFixed(2);
+        setEthPrice(usdValue);
+      } catch (err) {
+        console.error("Failed to fetch ETH price", err);
+      }
+    };
+
+    fetchPrice();
+  }, []);
+
   if (!isOpen) return null;
 
   return (
@@ -25,7 +42,7 @@ export const DailyModal: React.FC<DailyModalProps> = ({ isOpen, onClose }) => {
             className="mt-2 w-full py-3 text-lg font-bold text-black border rounded hover:bg-zinc-800"
             style={{ background: "hsl(136, 61.30%, 50.40%)", borderColor: "hsl(294, 100%, 60%)" }}
           >
-            Check In for 0.0006 ETH
+            Check In for 0.00055 ETH{ethPrice ? ` ($${ethPrice})` : ""}
           </button>
 
           <button
