@@ -23,8 +23,8 @@ export function ArticleCard({ title, href, description, image, bonus }: ArticleC
       </div>
       <img src={image} alt={title} className="w-full aspect-square object-cover" />
       <article className="p-4 text-center">
-        <h2 className="text-2xl font-semibold mb-2" style={{ color: 'hsl(119, 100.00%, 60.00%)' }}>{title}</h2>
-        <p className="text-xl text-white">{description}</p>
+        <h2 className="text-2xl font-semibold mb-2 text-white">{title}</h2>
+        <p className="text-xl" style={{ color: 'hsl(119, 100%, 60%)' }}>{description}</p>
       </article>
     </a>
   );
