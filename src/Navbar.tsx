@@ -56,9 +56,8 @@ export function Navbar() {
             <img src="/myevmlogo.png" alt="My EVM Logo" className="h-11 w-auto" />
           </Link>
           <h1 className="text-2xl md:text-3xl font-bold tracking-tighter -mb-1 text-zinc-100">
-            My EVM
+            MyEVM
             <span className="text-zinc-300 inline-block mx-1"> </span>
-            <span className="inline-block -skew-x-6" style={{ color: 'hsl(294, 100%, 60%)' }}>.xyz</span>
           </h1>
           <Link to="/xp-zone" className="text-white text-sm hover:text-pink-400">
             XP Zone
