@@ -16,8 +16,8 @@ export function ArticleCard({ title, href, description, image }: ArticleCardProp
       rel="noreferrer"
     >
       <img src={image} alt={title} className="w-full aspect-square object-cover" />
-      <article className="p-4">
-        <h2 className="text-lg font-semibold mb-2">{title}</h2>
+      <article className="p-4 text-center">
+        <h2 className="text-lg font-semibold mb-2" style={{ color: 'hsl(294, 100%, 60%)' }}>{title}</h2>
         <p className="text-sm text-zinc-400">{description}</p>
       </article>
     </a>
