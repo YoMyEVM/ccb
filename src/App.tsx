@@ -1,4 +1,3 @@
-import thirdwebIcon from "./thirdweb.svg";
 import { Navbar } from "./Navbar";
 import { ArticleCard } from "./components/ArticleCard";
 import { articleData } from "./data";
