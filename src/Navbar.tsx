@@ -99,10 +99,11 @@ export function Navbar() {
               <span style={{ color: "#0edbe5" }}>
                 Network transactions cost ~3 cents.
               </span>{" "}
+              <br /><br />
               <span>
                 Please add & keep at least a dollar worth of ETH in your account for this.
                 <br /><br />
-                You can click "Buy" to get ETH.
+                <span style={{ color: "#ff6fff" }}>You can click "Buy" to get ETH.</span>
               </span>
             </div>
           </div>
