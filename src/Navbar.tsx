@@ -1,5 +1,6 @@
 // src/Navbar.tsx
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ConnectButton, darkTheme, useActiveWallet } from "thirdweb/react";
 import { client } from "./client";
 import {
@@ -47,9 +48,21 @@ export function Navbar() {
   return (
     <>
       <div
-        className="sticky top-0 z-50 w-full bg-zinc-900 py-4 px-6 shadow-md flex items-center justify-end gap-4"
+        className="sticky top-0 z-50 w-full bg-zinc-900 py-4 px-6 shadow-md flex items-center justify-between gap-4"
         style={{ borderBottom: "1px solid hsl(294, 100%, 60%)" }}
       >
+        <div className="flex items-center gap-4">
+          <Link to="/">
+            <img src="/myevmlogo.png" alt="My EVM Logo" className="h-10 w-auto" />
+          </Link>
+          <Link to="/xp-zone" className="text-white text-sm hover:text-pink-400">
+            XP Zone
+          </Link>
+          <Link to="/leaderboard" className="text-white text-sm hover:text-pink-400">
+            Leaderboard
+          </Link>
+        </div>
+
         <div className="flex items-center gap-3">
           <button
             className="px-4 py-2 border rounded text-sm text-white bg-black"
