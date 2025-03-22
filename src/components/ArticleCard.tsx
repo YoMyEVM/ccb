@@ -11,8 +11,7 @@ interface ArticleCardProps {
 export function ArticleCard({ title, href, description, image, bonus }: ArticleCardProps) {
   return (
     <a
-      href={`${href}?utm_source=vite-template`}
-      target="_blank"
+      href={href}
       className="flex flex-col rounded-lg hover:bg-zinc-900 transition-colors overflow-hidden"
       style={{ border: '1px solid hsl(294, 100%, 60%)', width: '100%', maxWidth: '350px' }}
       rel="noreferrer"
