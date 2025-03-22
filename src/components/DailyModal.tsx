@@ -1,5 +1,5 @@
 // src/components/DailyModal.tsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 interface DailyModalProps {
   isOpen: boolean;
@@ -8,6 +8,7 @@ interface DailyModalProps {
 
 export const DailyModal: React.FC<DailyModalProps> = ({ isOpen, onClose }) => {
   const [ethPrice, setEthPrice] = useState<string | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -24,11 +25,30 @@ export const DailyModal: React.FC<DailyModalProps> = ({ isOpen, onClose }) => {
     fetchPrice();
   }, []);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
       <div
+        ref={modalRef}
         className="bg-zinc-900 text-white p-3 rounded-2xl shadow-2xl max-w-md w-full border"
         style={{ borderColor: "hsl(294, 100%, 60%)" }}
       >
