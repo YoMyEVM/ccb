@@ -27,7 +27,7 @@ export const articleData = [
       href: "/isai",
       description: "Unlocks at 100 million Total XP Awarded",
       image: "./7.png",
-      bonus: "N/A",
+      bonus: "10%",
     },
   ];
   
