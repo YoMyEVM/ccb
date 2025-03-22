@@ -21,7 +21,7 @@ function Header() {
   return (
     <header className="flex flex-col items-center mb-20 md:mb-20">
 
-      <h1 className="text-2xl md:text-6xl font-bold tracking-tighter mt-8 -mb-6 text-zinc-100">
+      <h1 className="text-2xl md:text-6xl font-bold tracking-tighter mt-1 -mb-10 text-zinc-100">
         My EVM
 		<span className="text-zinc-300 inline-block mx-1">  </span>
 		<span className="inline-block -skew-x-6" style={{ color: 'hsl(294, 100%, 60%)' }}>.xyz</span>
