@@ -6,7 +6,7 @@ import {
   inAppWallet,
   createWallet,
 } from "thirdweb/wallets";
-import { DailyModal } from "./components/CreateModal";
+import { CreateModal } from "./components/CreateModal";
 
 const wallets = [
   inAppWallet({
@@ -102,7 +102,7 @@ export function Navbar() {
         </div>
       </div>
 
-      <DailyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <CreateModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       {showSignInPrompt && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
