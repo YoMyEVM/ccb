@@ -96,16 +96,7 @@ const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, error }) => {
 
       {error && <p className="text-red-500 text-sm">{error}</p>}
 
-      <button
-        onClick={handleFormSubmit}
-        className="mt-2 w-full py-3 text-lg font-bold text-black border rounded hover:bg-zinc-800"
-        style={{
-          background: "hsl(136, 61.30%, 50.40%)",
-          borderColor: "hsl(294, 100%, 60%)",
-        }}
-      >
-        Submit Complaint
-      </button>
+
     </div>
   );
 };

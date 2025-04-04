@@ -1,14 +1,13 @@
-// src/components/ArticleCard.tsx
+// src/components/ComplaintCard.tsx
 
-interface ArticleCardProps {
+interface ComplaintCardProps {
   title: string;
   href: string;
   description: string;
-  image: string;
   bonus: string;
 }
 
-export function ArticleCard({ title, href, description, image, bonus }: ArticleCardProps) {
+export function ComplaintCard({ title, href, description, bonus }: ComplaintCardProps) {
   return (
     <a
       href={href}
@@ -20,7 +19,6 @@ export function ArticleCard({ title, href, description, image, bonus }: ArticleC
         <div className="text-white">Bonus</div>
         <div className="text-3xl" style={{ color: '#0edbe5' }}>{bonus}</div>
       </div>
-      <img src={image} alt={title} className="w-full aspect-square object-cover" />
       <article className="p-4 text-center">
         <h2 className="text-2xl font-semibold mb-2 text-white">{title}</h2>
         <p className="text-xl" style={{ color: 'hsl(119, 100%, 60%)' }}>{description}</p>

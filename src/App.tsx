@@ -1,5 +1,5 @@
-import { ArticleCard } from "./components/ArticleCard";
-import { articleData } from "./data";
+import { ComplaintCard } from "./components/ComplaintCard";
+import { complaintData } from "./data";
 
 export function App() {
   return (
@@ -23,8 +23,8 @@ function Header() {
 function ThirdwebResources() {
   return (
     <div className="grid gap-4 lg:grid-cols-4 justify-center">
-      {articleData.map((item, i) => (
-        <ArticleCard key={i} {...item} />
+      {complaintData.map((item, i) => (
+        <ComplaintCard key={i} {...item} />
       ))}
     </div>
   );

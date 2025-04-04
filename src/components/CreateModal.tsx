@@ -94,6 +94,17 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
           <ComplaintForm onSubmit={handleSubmit} error={error} />
 
           <button
+            onClick={() => handleSubmit({ subject: '', accused: '', contractAddr: '', chain: '', evidenceUrl: '', description: '' })}
+            className="mt-2 w-full py-3 text-lg font-bold text-black border rounded hover:bg-zinc-800"
+            style={{
+              background: "hsl(136, 61.30%, 50.40%)",
+              borderColor: "hsl(294, 100%, 60%)",
+            }}
+          >
+            Submit Complaint for 0.0026 ETH{ethPrice ? ` ($${ethPrice})` : ""}
+          </button>
+
+          <button
             onClick={onClose}
             className="w-full py-2 text-sm border rounded hover:bg-zinc-800"
             style={{ borderColor: "hsl(294, 100%, 60%)" }}
