@@ -20,7 +20,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<Layout />}>
             <Route index element={<App />} />
             <Route path="about" element={<About />} />
-            <Route path="complaint/:id" element={<ComplaintPage />} />  {/* Add the dynamic route for complaint */}
+            <Route path="complaint/:id" element={<ComplaintPage />} /> {/* Dynamic route */}
           </Route>
         </Routes>
       </BrowserRouter>
