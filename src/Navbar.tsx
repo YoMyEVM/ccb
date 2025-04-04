@@ -54,7 +54,10 @@ export function Navbar() {
           <Link to="/">
             <img src="/ccblogo.png" alt="CCB Logo" className="h-11 w-auto" />
           </Link>
-          <Link to="/" className="text-2xl md:text-3xl font-bold tracking-tighter -mb-1 text-zinc-100">
+          <Link
+            to="/"
+            className="text-2xl md:text-3xl font-bold tracking-tighter -mb-1 text-[#ff6fff]"
+          >
             Crypto Complaint Board
           </Link>
         </div>
@@ -91,11 +94,16 @@ export function Navbar() {
               <span style={{ color: "#0edbe5" }}>
                 Network transactions cost ~3 cents.
               </span>{" "}
-              <br /><br />
+              <br />
+              <br />
               <span>
-                Please add & keep at least a dollar worth of ETH in your account for this.
-                <br /><br />
-                <span style={{ color: "#ff6fff" }}>You can click "Buy" to get ETH.</span>
+                Please add & keep at least a dollar worth of ETH in your account
+                for this.
+                <br />
+                <br />
+                <span style={{ color: "#ff6fff" }}>
+                  You can click "Buy" to get ETH.
+                </span>
               </span>
             </div>
           </div>
@@ -107,7 +115,12 @@ export function Navbar() {
       {showSignInPrompt && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
           <div className="bg-zinc-900 text-white p-6 rounded-lg shadow-lg max-w-md w-full border border-pink-500">
-            <h2 className="text-xl font-bold mb-4 text-center" style={{ color: "hsl(294, 100%, 60%)" }}>Please Sign In</h2>
+            <h2
+              className="text-xl font-bold mb-4 text-center"
+              style={{ color: "hsl(294, 100%, 60%)" }}
+            >
+              Please Sign In
+            </h2>
             <p className="text-sm text-center mb-4">
               You must be connected to your wallet to Check-In.
             </p>
