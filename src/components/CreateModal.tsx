@@ -15,7 +15,7 @@ export const DailyModal: React.FC<DailyModalProps> = ({ isOpen, onClose }) => {
       try {
         const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
         const data = await res.json();
-        const usdValue = (data.ethereum.usd * 0.00111).toFixed(2);
+        const usdValue = (data.ethereum.usd * 0.0026).toFixed(2);
         setEthPrice(usdValue);
       } catch (err) {
         console.error("Failed to fetch ETH price", err);
@@ -54,16 +54,14 @@ export const DailyModal: React.FC<DailyModalProps> = ({ isOpen, onClose }) => {
       >
         <div className="flex flex-col items-center space-y-3">
 
-          <img src="/xpnft.png" alt="XP NFT" className="w-84 h-84 object-contain" />
+          <h2 className="text-2xl -mt-12 font-bold text-center" style={{ color: '#0edbe5' }}>Create Complaint</h2>
 
-          <h2 className="text-2xl -mt-12 font-bold text-center" style={{ color: '#0edbe5' }}>Check-In</h2>
-          <p className="text-5xl font-semibold text-center text-white">+300 XP</p>
 
           <button
             className="mt-2 w-full py-3 text-lg font-bold text-black border rounded hover:bg-zinc-800"
             style={{ background: "hsl(136, 61.30%, 50.40%)", borderColor: "hsl(294, 100%, 60%)" }}
           >
-            Check In for 0.00111 ETH{ethPrice ? ` ($${ethPrice})` : ""}
+            Create for 0.0026 ETH{ethPrice ? ` ($${ethPrice})` : ""}
           </button>
 
           <button

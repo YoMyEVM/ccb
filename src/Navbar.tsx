@@ -1,4 +1,3 @@
-// src/Navbar.tsx
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ConnectButton, darkTheme, useActiveWallet } from "thirdweb/react";
@@ -7,7 +6,7 @@ import {
   inAppWallet,
   createWallet,
 } from "thirdweb/wallets";
-import { DailyModal } from "./components/DailyModal";
+import { DailyModal } from "./components/CreateModal";
 
 const wallets = [
   inAppWallet({
@@ -53,24 +52,17 @@ export function Navbar() {
       >
         <div className="flex items-center gap-4">
           <Link to="/">
-            <img src="/myevmlogo.png" alt="My EVM Logo" className="h-11 w-auto" />
+            <img src="/ccblogo.png" alt="CCB Logo" className="h-11 w-auto" />
           </Link>
           <Link to="/" className="text-2xl md:text-3xl font-bold tracking-tighter -mb-1 text-zinc-100">
-            MyEVM
+            Crypto Complaint Board
           </Link>
         </div>
 
         <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-6">
-          <Link to="/xp-zone" className="text-white text-2xl hover:text-[#0edbe5]">
-            XP Zone
+          <Link to="/about" className="text-white text-2xl hover:text-[#0edbe5]">
+            About
           </Link>
-          <Link to="/Claim" className="text-white text-2xl hover:text-[#0edbe5]">
-            Claim
-          </Link>
-          <Link to="/leaderboard" className="text-white text-2xl hover:text-[#0edbe5]">
-            Leaders
-          </Link>
-
         </div>
 
         <div className="flex items-center gap-3">
@@ -79,7 +71,7 @@ export function Navbar() {
             style={{ borderColor: "hsl(294, 100%, 60%)", borderWidth: 1 }}
             onClick={handleCheckIn}
           >
-            Daily Check-In
+            Create Complaint
           </button>
 
           <div className="relative group">
