@@ -1,9 +1,11 @@
 // src/components/CreateModal.tsx
+
 import React, { useEffect, useState, useRef } from "react";
-import { ComplaintForm } from "./ComplaintForm";
-import { contract } from "../client";
-import { useActiveWallet, useSendTransaction } from "thirdweb/react";
+import { prepareContractCall } from "thirdweb";
 import { claimTo } from "thirdweb/extensions/erc721";
+import { upload } from "thirdweb/storage";
+import { useSendTransaction, useActiveWallet } from "thirdweb/react";
+import { contract } from "../client"; // the recognized drop contract
 
 interface CreateModalProps {
   isOpen: boolean;
@@ -11,14 +13,24 @@ interface CreateModalProps {
 }
 
 export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => {
-  const [ethPrice, setEthPrice] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Pull in user's wallet & the transaction sender
+  // states for user fields
+  const [subject, setSubject] = useState("");
+  const [accused, setAccused] = useState("");
+  const [contractAddr, setContractAddr] = useState("");
+  const [chain, setChain] = useState("");
+  const [evidenceUrl, setEvidenceUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+
+  const [ethPrice, setEthPrice] = useState<string | null>(null);
+
+  // thirdweb hooks
   const wallet = useActiveWallet();
   const { mutate: sendTransaction, status, error } = useSendTransaction();
 
-  // Fetch approximate cost in USD (0.0026 ETH)
+  // fetch approximate cost for 0.0026 ETH in USD
   useEffect(() => {
     const fetchPrice = async () => {
       try {
@@ -29,13 +41,13 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
         const usdValue = (data.ethereum.usd * 0.0026).toFixed(2);
         setEthPrice(usdValue);
       } catch (err) {
-        console.error("Failed to fetch ETH price", err);
+        console.error("Failed to fetch ETH price:", err);
       }
     };
     fetchPrice();
   }, []);
 
-  // Close the modal if user clicks outside
+  // close modal on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -53,46 +65,98 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
     };
   }, [isOpen, onClose]);
 
-  // If modal is closed, don't render anything
   if (!isOpen) return null;
 
-  // The function that triggers an actual mint/claim
+  // the function that does lazyMint + claim
   const handleMint = async () => {
-    // Check if user has connected a wallet
     if (!wallet) {
-      alert("Please connect your wallet first.");
+      alert("Connect your wallet first!");
       return;
     }
 
-    // Get the real address
     const account = await wallet.getAccount();
     if (!account?.address) {
-      alert("Could not resolve wallet address.");
+      alert("No wallet address found!");
+      return;
+    }
+
+    // basic check for required fields
+    if (!subject.trim() || !description.trim()) {
+      alert("Please fill out Subject and Description.");
       return;
     }
 
     try {
-      // Prepare the transaction for 'claimTo'
-      const tx = claimTo({
-        contract,              // from ../client
-        to: account.address,   // send to user's own wallet
-        quantity: BigInt(1),
+      // 1) create user metadata object
+      const metadata = {
+        name: subject,
+        description,
+        attributes: [
+          { trait_type: "accused", value: accused },
+          { trait_type: "contract_address", value: contractAddr },
+          { trait_type: "chain", value: chain },
+          { trait_type: "submitted_by", value: account.address },
+          { trait_type: "evidence", value: evidenceUrl },
+        ],
+        image: file?.name,
+      };
+
+      // 2) upload metadata (and optional file) to IPFS
+      const toUpload = file ? [file, metadata] : [metadata];
+      const uris = await upload({ client: contract.client, files: toUpload });
+      // if user provided a file, the second item is your JSON. if no file, just item 0
+      const finalMetadataURI = file ? uris[1] : uris[0];
+
+      // 3) prepare the raw lazyMint call with your contract
+      const lazyTx = prepareContractCall({
+        contract,
+        method: "function lazyMint(uint256, string, bytes) returns (uint256)",
+        params: [
+          BigInt(1),           // _amount = 1
+          finalMetadataURI,    // _baseURIForTokens
+          "0x",               // _data
+        ],
       });
 
-      // Send the transaction from user’s wallet
-      sendTransaction(tx, {
+      // 4) send lazyMint transaction
+      sendTransaction(lazyTx, {
         onSuccess: () => {
-          alert("Complaint NFT minted successfully!");
-          onClose();
+          console.log("lazyMint success, now let's claim the newly minted token...");
+
+          // 5) then claim that minted token to user
+          const claimTx = claimTo({
+            contract,
+            to: account.address,
+            quantity: BigInt(1),
+          });
+
+          sendTransaction(claimTx, {
+            onSuccess: () => {
+              alert("Complaint NFT minted with custom metadata!");
+              // reset form states
+              setSubject("");
+              setAccused("");
+              setContractAddr("");
+              setChain("");
+              setEvidenceUrl("");
+              setDescription("");
+              setFile(null);
+              onClose();
+            },
+            onError: (err) => {
+              console.error("Claim failed:", err);
+              alert("Failed to claim newly minted token.");
+            },
+          });
         },
         onError: (err) => {
-          console.error("Claim transaction failed:", err);
-          alert("Mint failed.");
+          console.error("lazyMint error:", err);
+          alert("Failed to lazy-mint new token metadata.");
         },
       });
     } catch (err) {
-      console.error("Failed to build claimTo transaction:", err);
-      alert("Transaction building failed.");
+      console.error("Mint process error:", err);
+      alert("Could not finish the minting process.");
     }
   };
 
@@ -111,8 +175,61 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
             Create Complaint
           </h2>
 
-          {/* The complaint form with all fields */}
-          <ComplaintForm />
+          {/* Simplified inline form, you can integrate ComplaintForm states if you prefer. */}
+          <input
+            type="text"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            placeholder="Complaint Subject"
+            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
+          />
+
+          <input
+            type="text"
+            value={accused}
+            onChange={(e) => setAccused(e.target.value)}
+            placeholder="Accused Party"
+            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
+          />
+
+          <input
+            type="text"
+            value={contractAddr}
+            onChange={(e) => setContractAddr(e.target.value)}
+            placeholder="Contract Address (optional)"
+            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
+          />
+
+          <input
+            type="text"
+            value={chain}
+            onChange={(e) => setChain(e.target.value)}
+            placeholder="Chain (e.g. Ethereum, Polygon)"
+            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
+          />
+
+          <input
+            type="text"
+            value={evidenceUrl}
+            onChange={(e) => setEvidenceUrl(e.target.value)}
+            placeholder="Evidence URL (tweet, tx hash, etc.)"
+            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
+          />
+
+          <textarea
+            rows={4}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Describe the issue in detail"
+            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
+          />
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setFile(e.target.files?.[0] || null)}
+            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
+          />
 
           <button
             onClick={handleMint}
@@ -124,8 +241,7 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
               opacity: status === "pending" ? 0.6 : 1,
             }}
           >
-            {status === "pending" ? "Minting..." : "Create for 0.0026 ETH"}
-            {ethPrice ? ` ($${ethPrice})` : ""}
+            {status === "pending" ? "Minting..." : `Create for 0.0026 ETH${ethPrice ? ` ($${ethPrice})` : ""}`}
           </button>
 
           {error && (
