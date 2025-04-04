@@ -1,3 +1,5 @@
+// src/main.tsx
+
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { ThirdwebProvider } from "thirdweb/react";
@@ -6,10 +8,7 @@ import { App } from "./App";
 
 import About from "./pages/About";
 import Layout from "./Layout";
-import FunAppPage from "./pages/FunAppPage";
-import ProAppPage from "./pages/ProAppPage";
-import DataAppPage from "./pages/DataAppPage";
-import IsaiAppPage from "./pages/IsaiAppPage";
+import ComplaintPage from "./components/ComplaintPage"; // Import your new complaint page component
 
 import "./index.css";
 
@@ -20,11 +19,8 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<App />} />
-            <Route path="About" element={<About />} />
-            <Route path="fun" element={<FunAppPage />} />
-            <Route path="pro" element={<ProAppPage />} />
-            <Route path="data" element={<DataAppPage />} />
-            <Route path="isai" element={<IsaiAppPage />} />
+            <Route path="about" element={<About />} />
+            <Route path="complaint/:id" element={<ComplaintPage />} />  {/* Add the dynamic route for complaint */}
           </Route>
         </Routes>
       </BrowserRouter>
