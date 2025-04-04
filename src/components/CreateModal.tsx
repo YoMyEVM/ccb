@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useActiveWallet } from "thirdweb/react";
+import ComplaintForm from "./ComplaintForm";
 
 interface CreateModalProps {
   isOpen: boolean;
@@ -11,21 +12,11 @@ interface CreateModalProps {
 export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // states for user fields
-  const [subject, setSubject] = useState("");
-  const [accused, setAccused] = useState("");
-  const [contractAddr, setContractAddr] = useState("");
-  const [chain, setChain] = useState("");
-  const [evidenceUrl, setEvidenceUrl] = useState("");
-  const [description, setDescription] = useState("");
-
   const [ethPrice, setEthPrice] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // thirdweb hooks
   const wallet = useActiveWallet();
-
-  // State to manage any potential error message
-  const [error, setError] = useState<string | null>(null);
 
   // fetch approximate cost for 0.0026 ETH in USD
   useEffect(() => {
@@ -63,59 +54,27 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
-
-  // handle submission without NFT or blockchain transaction
-  const handleSubmit = async () => {
+  const handleSubmit = (complaintData: { subject: string, accused: string, contractAddr: string, chain: string, evidenceUrl: string, description: string }) => {
     if (!wallet) {
       alert("Connect your wallet first!");
       return;
     }
 
-    const account = await wallet.getAccount();
+    const account = wallet.getAccount();
     if (!account?.address) {
       alert("No wallet address found!");
       return;
     }
 
-    // basic check for required fields
-    if (!subject.trim() || !description.trim()) {
-      setError("Please fill out Subject and Description.");
-      return;
-    }
+    // Add complaint submission logic here (e.g., send to server or smart contract)
 
-    try {
-      // 1) create user complaint object
-      const complaintData = {
-        subject,
-        description,
-        accused,
-        contractAddr,
-        chain,
-        evidenceUrl,
-        submittedBy: account.address,
-      };
+    console.log("Complaint submitted:", complaintData);
 
-      // 2) Here you would handle the complaint data (e.g., send it to a server or smart contract endpoint)
-      // For now, we'll just log it to the console
-      console.log("Complaint submitted:", complaintData);
-
-      // Simulate a successful submission
-      alert("Complaint submitted successfully!");
-      // Reset form fields
-      setSubject("");
-      setAccused("");
-      setContractAddr("");
-      setChain("");
-      setEvidenceUrl("");
-      setDescription("");
-      setError(null); // Reset error state on successful submission
-      onClose();
-    } catch (err) {
-      console.error("Submission error:", err);
-      setError("Could not finish the submission process.");
-    }
+    alert("Complaint submitted successfully!");
+    onClose();
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
@@ -132,68 +91,7 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
             Create Complaint
           </h2>
 
-          <input
-            type="text"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-            placeholder="Complaint Subject"
-            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
-          />
-
-          <input
-            type="text"
-            value={accused}
-            onChange={(e) => setAccused(e.target.value)}
-            placeholder="Accused Party"
-            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
-          />
-
-          <input
-            type="text"
-            value={contractAddr}
-            onChange={(e) => setContractAddr(e.target.value)}
-            placeholder="Contract Address (optional)"
-            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
-          />
-
-          <input
-            type="text"
-            value={chain}
-            onChange={(e) => setChain(e.target.value)}
-            placeholder="Chain (e.g. Ethereum, Polygon)"
-            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
-          />
-
-          <input
-            type="text"
-            value={evidenceUrl}
-            onChange={(e) => setEvidenceUrl(e.target.value)}
-            placeholder="Evidence URL (tweet, tx hash, etc.)"
-            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
-          />
-
-          <textarea
-            rows={4}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Describe the issue in detail"
-            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
-          />
-
-          <button
-            onClick={handleSubmit}
-            className="mt-2 w-full py-3 text-lg font-bold text-black border rounded hover:bg-zinc-800"
-            style={{
-              background: "hsl(136, 61.30%, 50.40%)",
-              borderColor: "hsl(294, 100%, 60%)",
-            }}
-          >
-            Submit Complaint for 0.0026 ETH{ethPrice ? ` ($${ethPrice})` : ""}
-          </button>
-
-          {error && (
-            <p className="text-red-500 text-sm">{error}</p>
-          )}
+          <ComplaintForm onSubmit={handleSubmit} error={error} />
 
           <button
             onClick={onClose}
