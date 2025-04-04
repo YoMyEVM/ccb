@@ -1,11 +1,7 @@
 // src/components/CreateModal.tsx
 
 import React, { useEffect, useState, useRef } from "react";
-import { prepareContractCall } from "thirdweb";
-import { claimTo } from "thirdweb/extensions/erc721";
-import { upload } from "thirdweb/storage";
-import { useSendTransaction, useActiveWallet } from "thirdweb/react";
-import { contract } from "../client"; // the recognized drop contract
+import { useActiveWallet } from "thirdweb/react";
 
 interface CreateModalProps {
   isOpen: boolean;
@@ -22,13 +18,14 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
   const [chain, setChain] = useState("");
   const [evidenceUrl, setEvidenceUrl] = useState("");
   const [description, setDescription] = useState("");
-  const [file, setFile] = useState<File | null>(null);
 
   const [ethPrice, setEthPrice] = useState<string | null>(null);
 
   // thirdweb hooks
   const wallet = useActiveWallet();
-  const { mutate: sendTransaction, status, error } = useSendTransaction();
+
+  // State to manage any potential error message
+  const [error, setError] = useState<string | null>(null);
 
   // fetch approximate cost for 0.0026 ETH in USD
   useEffect(() => {
@@ -42,6 +39,7 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
         setEthPrice(usdValue);
       } catch (err) {
         console.error("Failed to fetch ETH price:", err);
+        setError("Failed to fetch ETH price.");
       }
     };
     fetchPrice();
@@ -67,8 +65,8 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
 
   if (!isOpen) return null;
 
-  // the function that does lazyMint + claim
-  const handleMint = async () => {
+  // handle submission without NFT or blockchain transaction
+  const handleSubmit = async () => {
     if (!wallet) {
       alert("Connect your wallet first!");
       return;
@@ -82,81 +80,40 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
 
     // basic check for required fields
     if (!subject.trim() || !description.trim()) {
-      alert("Please fill out Subject and Description.");
+      setError("Please fill out Subject and Description.");
       return;
     }
 
     try {
-      // 1) create user metadata object
-      const metadata = {
-        name: subject,
+      // 1) create user complaint object
+      const complaintData = {
+        subject,
         description,
-        attributes: [
-          { trait_type: "accused", value: accused },
-          { trait_type: "contract_address", value: contractAddr },
-          { trait_type: "chain", value: chain },
-          { trait_type: "submitted_by", value: account.address },
-          { trait_type: "evidence", value: evidenceUrl },
-        ],
-        image: file?.name,
+        accused,
+        contractAddr,
+        chain,
+        evidenceUrl,
+        submittedBy: account.address,
       };
 
-      // 2) upload metadata (and optional file) to IPFS
-      const toUpload = file ? [file, metadata] : [metadata];
-      const uris = await upload({ client: contract.client, files: toUpload });
-      // if user provided a file, the second item is your JSON. if no file, just item 0
-      const finalMetadataURI = file ? uris[1] : uris[0];
+      // 2) Here you would handle the complaint data (e.g., send it to a server or smart contract endpoint)
+      // For now, we'll just log it to the console
+      console.log("Complaint submitted:", complaintData);
 
-      // 3) prepare the raw lazyMint call with your contract
-      const lazyTx = prepareContractCall({
-        contract,
-        method: "function lazyMint(uint256, string, bytes) returns (uint256)",
-        params: [
-          BigInt(1),           // _amount = 1
-          finalMetadataURI,    // _baseURIForTokens
-          "0x",               // _data
-        ],
-      });
-
-      // 4) send lazyMint transaction
-      sendTransaction(lazyTx, {
-        onSuccess: () => {
-          console.log("lazyMint success, now let's claim the newly minted token...");
-
-          // 5) then claim that minted token to user
-          const claimTx = claimTo({
-            contract,
-            to: account.address,
-            quantity: BigInt(1),
-          });
-
-          sendTransaction(claimTx, {
-            onSuccess: () => {
-              alert("Complaint NFT minted with custom metadata!");
-              // reset form states
-              setSubject("");
-              setAccused("");
-              setContractAddr("");
-              setChain("");
-              setEvidenceUrl("");
-              setDescription("");
-              setFile(null);
-              onClose();
-            },
-            onError: (err) => {
-              console.error("Claim failed:", err);
-              alert("Failed to claim newly minted token.");
-            },
-          });
-        },
-        onError: (err) => {
-          console.error("lazyMint error:", err);
-          alert("Failed to lazy-mint new token metadata.");
-        },
-      });
+      // Simulate a successful submission
+      alert("Complaint submitted successfully!");
+      // Reset form fields
+      setSubject("");
+      setAccused("");
+      setContractAddr("");
+      setChain("");
+      setEvidenceUrl("");
+      setDescription("");
+      setError(null); // Reset error state on successful submission
+      onClose();
     } catch (err) {
-      console.error("Mint process error:", err);
-      alert("Could not finish the minting process.");
+      console.error("Submission error:", err);
+      setError("Could not finish the submission process.");
     }
   };
 
@@ -175,7 +132,6 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
             Create Complaint
           </h2>
 
-          {/* Simplified inline form, you can integrate ComplaintForm states if you prefer. */}
           <input
             type="text"
             value={subject}
@@ -224,28 +180,19 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
             className="w-full p-2 rounded bg-black text-white border border-zinc-700"
           />
 
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setFile(e.target.files?.[0] || null)}
-            className="w-full p-2 rounded bg-black text-white border border-zinc-700"
-          />
-
           <button
-            onClick={handleMint}
-            disabled={status === "pending"}
+            onClick={handleSubmit}
             className="mt-2 w-full py-3 text-lg font-bold text-black border rounded hover:bg-zinc-800"
             style={{
               background: "hsl(136, 61.30%, 50.40%)",
               borderColor: "hsl(294, 100%, 60%)",
-              opacity: status === "pending" ? 0.6 : 1,
             }}
           >
-            {status === "pending" ? "Minting..." : `Create for 0.0026 ETH${ethPrice ? ` ($${ethPrice})` : ""}`}
+            Submit Complaint for 0.0026 ETH{ethPrice ? ` ($${ethPrice})` : ""}
           </button>
 
           {error && (
-            <p className="text-red-500 text-sm">Error: {error.message}</p>
+            <p className="text-red-500 text-sm">{error}</p>
           )}
 
           <button
