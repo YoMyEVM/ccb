@@ -74,7 +74,7 @@ export function Navbar() {
             style={{ borderColor: "hsl(294, 100%, 60%)", borderWidth: 1 }}
             onClick={handleCheckIn}
           >
-            Create Complaint
+            Got A Complaint?
           </button>
 
           <div className="relative group">
