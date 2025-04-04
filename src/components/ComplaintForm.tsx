@@ -7,14 +7,14 @@ export function ComplaintForm() {
       {/* Subject */}
       <input
         type="text"
-        placeholder="Subject"
+        placeholder="Complaint Subject"
         className="p-2 rounded bg-zinc-800 text-white border border-zinc-700"
       />
 
       {/* Accused Party */}
       <input
         type="text"
-        placeholder="Accused Party"
+        placeholder="Accused Party (e.g. Project, X Handle, ENS, etc.)"
         className="p-2 rounded bg-zinc-800 text-white border border-zinc-700"
       />
 
@@ -53,6 +53,12 @@ export function ComplaintForm() {
         className="p-2 rounded bg-zinc-800 text-white border border-zinc-700"
       />
 
+      {/* Transaction Hash */}
+      <input
+        type="text"
+        placeholder="Transaction Hash (optional)"
+        className="p-2 rounded bg-zinc-800 text-white border border-zinc-700"
+      />
     </form>
   );
 }
