@@ -1,13 +1,18 @@
 // src/components/ComplaintCard.tsx
 
 interface ComplaintCardProps {
-  title: string;
-  href: string;
-  description: string;
-  bonus: string;
+  subject: string;    // Complaint subject
+  accused: string;    // Name or address of the accused
+  submittedBy: string; // Name or address of the submitter
+  href: string;       // URL to navigate when clicking on the card
 }
 
-export function ComplaintCard({ title, href, description, bonus }: ComplaintCardProps) {
+// Utility function to truncate addresses
+const truncateAddress = (address: string) => {
+  return `${address.slice(0, 6)}...${address.slice(-4)}`;
+};
+
+export function ComplaintCard({ subject, accused, submittedBy, href }: ComplaintCardProps) {
   return (
     <a
       href={href}
@@ -15,13 +20,18 @@ export function ComplaintCard({ title, href, description, bonus }: ComplaintCard
       style={{ border: '1px solid hsl(294, 100%, 60%)', width: '100%', maxWidth: '350px' }}
       rel="noreferrer"
     >
-      <div className="text-center text-xl font-bold py-2">
-        <div className="text-white">Bonus</div>
-        <div className="text-3xl" style={{ color: '#0edbe5' }}>{bonus}</div>
-      </div>
-      <article className="p-4 text-center">
-        <h2 className="text-2xl font-semibold mb-2 text-white">{title}</h2>
-        <p className="text-xl" style={{ color: 'hsl(119, 100%, 60%)' }}>{description}</p>
+      <article className="p-4 text-center">        
+        {/* Display the accused with neon pink, truncated */}
+        <p className="text-xl" style={{ color: '#fd01f5' }}>
+          <strong>Complaint Against:</strong> {truncateAddress(accused)}
+        </p>
+
+        <h2 className="text-2xl font-semibold mb-2 text-white">{subject}</h2>
+
+        {/* Display the submitter with cyan color, truncated */}
+        <p className="text-xl" style={{ color: '#01fcfc' }}>
+          <strong>By:</strong> {truncateAddress(submittedBy)}
+        </p>
       </article>
     </a>
   );

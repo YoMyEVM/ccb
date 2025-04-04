@@ -1,3 +1,5 @@
+// src/App.tsx
+
 import { ComplaintCard } from "./components/ComplaintCard";
 import { complaintData } from "./data";
 
@@ -14,8 +16,9 @@ export function App() {
 
 function Header() {
   return (
-    <header className="flex flex-col items-center -mt-5 mb-10 mt-10 md:mb-10">    
-      <span className="inline-block -skew-x-6 text-2xl" style={{ color: 'hsl(0, 0.00%, 93.70%)' }}>Got a Complaint?</span>      
+    <header className="flex flex-col items-center -mt-10 mb-10 mt-10 md:mb-10">    
+     <span className="inline-block -skew-x-6 text-2xl" style={{ color: 'hsl(0, 0.00%, 93.70%)' }}>Got a Complaint?</span>      
+
     </header>
   );
 }
