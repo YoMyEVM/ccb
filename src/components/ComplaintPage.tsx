@@ -1,8 +1,7 @@
-// ComplaintPage.tsx
-
+// src/pages/ComplaintPage.tsx
 import { useParams } from "react-router-dom";
 import { complaintData } from "../data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ComplaintPage = () => {
   const { id } = useParams();
@@ -11,6 +10,24 @@ const ComplaintPage = () => {
 
   const [votes, setVotes] = useState(0);
   const [isAppealed, setIsAppealed] = useState(false);
+  const [ethPrice, setEthPrice] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      try {
+        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
+        const data = await res.json();
+        setEthPrice(data.ethereum.usd);
+      } catch (err) {
+        console.error("Failed to fetch ETH price:", err);
+      }
+    };
+    fetchPrice();
+  }, []);
+
+  const formatUsd = (ethAmount: number) => {
+    return ethPrice ? ` ($${(ethAmount * ethPrice).toFixed(2)})` : "";
+  };
 
   if (!complaint) {
     return <div>Complaint not found!</div>;
@@ -40,8 +57,8 @@ const ComplaintPage = () => {
             >
               Upvote
             </button>
-            <div className="absolute top-full left-full ml-2 mt-2 w-52 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-              <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH</span>
+            <div className="absolute top-full left-full ml-2 mt-2 w-60 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+              <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH{formatUsd(0.0009)}</span>
               <br />
               I agree with this complaint or found it helpful
             </div>
@@ -55,8 +72,8 @@ const ComplaintPage = () => {
             >
               Downvote
             </button>
-            <div className="absolute top-full left-full ml-2 mt-2 w-52 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-              <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH</span>
+            <div className="absolute top-full left-full ml-2 mt-2 w-60 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+              <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH{formatUsd(0.0009)}</span>
               <br />
               I disagree with this complaint or didn't find it helpful
             </div>
@@ -70,8 +87,8 @@ const ComplaintPage = () => {
             >
               Appeal
             </button>
-            <div className="absolute top-full left-full ml-2 mt-2 w-56 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-              <span style={{ color: "#0edbe5" }}>Cost: 0.15 ETH</span>
+            <div className="absolute top-full left-full ml-2 mt-2 w-64 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+              <span style={{ color: "#0edbe5" }}>Cost: 0.15 ETH{formatUsd(0.15)}</span>
               <br />
               Appeal to the DAO for site removal (coming soon)
             </div>
