@@ -58,15 +58,19 @@ export function Navbar() {
             to="/"
             className="text-2xl md:text-3xl font-bold tracking-tighter -mb-1 text-[#ff6fff]"
           >
-            Crypto Complaint Board
+            Crypto Complaints
           </Link>
         </div>
 
         <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-6">
+          <Link to="/leaderboard" className="text-white text-2xl hover:text-[#0edbe5]">
+            Leaderboard
+          </Link>
           <Link to="/about" className="text-white text-2xl hover:text-[#0edbe5]">
             About
           </Link>
         </div>
+
 
         <div className="flex items-center gap-3">
           <button

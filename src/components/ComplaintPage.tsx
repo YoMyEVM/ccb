@@ -43,7 +43,7 @@ const ComplaintPage = () => {
             <div className="absolute top-full left-full ml-2 mt-2 w-52 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
               <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH</span>
               <br />
-              I agree with this complaint
+              I agree with this complaint or found it helpful
             </div>
           </div>
 
@@ -58,7 +58,7 @@ const ComplaintPage = () => {
             <div className="absolute top-full left-full ml-2 mt-2 w-52 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
               <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH</span>
               <br />
-              I disagree with this complaint
+              I disagree with this complaint or didn't find it helpful
             </div>
           </div>
 

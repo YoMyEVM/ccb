@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { App } from "./App";
 
 import About from "./pages/About";
+import Leaderboard from "./pages/Leaderboard";
 import Layout from "./Layout";
 import ComplaintPage from "./components/ComplaintPage"; // Import your new complaint page component
 
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<Layout />}>
             <Route index element={<App />} />
             <Route path="about" element={<About />} />
+            <Route path="leaderboard" element={<Leaderboard />} />
             <Route path="complaint/:id" element={<ComplaintPage />} /> {/* Dynamic route */}
           </Route>
         </Routes>

@@ -10,7 +10,7 @@ export interface ComplaintData {
 
 export const complaintData: ComplaintData[] = [
   {
-    subject: "Unlawful Smart Contract Exploit",
+    subject: "Smart Contract Exploit",
     accused: "0xB1fD29b0b7Bd0D15A8f7d8a5a5b3D4D7892A5573",
     submittedBy: "0xAbcdef1234567890abcdeF1234567890abcdef12",
     href: "#",  // Link for more details (this can be any URL)
@@ -45,7 +45,7 @@ export const complaintData: ComplaintData[] = [
     description: "An oracle manipulation attack was carried out where the price feed was altered to exploit the DeFi protocol."
   },
   {
-    subject: "Pump and Dump Scheme on DEX",
+    subject: "Pump and Dump Scheme",
     accused: "0xA3fD29b0b7Bd0D15A8f7d8a5a5b3D4D7892A5577",
     submittedBy: "0xFdcdef1234567890abcdeF1234567890abcdef17",
     href: "#",  // Link for more details (this can be any URL)
@@ -66,7 +66,7 @@ export const complaintData: ComplaintData[] = [
     description: "A flash loan attack was carried out on a lending platform, exploiting a vulnerability in the interest rate calculation logic."
   },
   {
-    subject: "Staking Reward Mismanagement",
+    subject: "Staking Mismanagement",
     accused: "0xD3fD29b0b7Bd0D15A8f7d8a5a5b3D4D7892A5580",
     submittedBy: "0xIecdef1234567890abcdeF1234567890abcdef20",
     href: "#",  // Link for more details (this can be any URL)
