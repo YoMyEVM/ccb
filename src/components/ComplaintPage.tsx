@@ -58,7 +58,7 @@ const ComplaintPage = () => {
               Upvote
             </button>
             <div className="absolute top-full left-full ml-2 mt-2 w-60 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-              <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH{formatUsd(0.0009)}</span>
+              <span style={{ color: "#0edbe5" }}>Cost: 0.0007 ETH{formatUsd(0.0007)}</span>
               <br />
               I agree with this complaint or found it helpful
             </div>
@@ -88,7 +88,7 @@ const ComplaintPage = () => {
               Appeal
             </button>
             <div className="absolute top-full left-full ml-2 mt-2 w-64 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-              <span style={{ color: "#0edbe5" }}>Cost: 0.15 ETH{formatUsd(0.15)}</span>
+              <span style={{ color: "#0edbe5" }}>Cost: 0.12 ETH{formatUsd(0.12)}</span>
               <br />
               Appeal to the DAO for site removal (coming soon)
             </div>
