@@ -40,7 +40,7 @@ const ComplaintPage = () => {
             >
               Upvote
             </button>
-            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-52 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+            <div className="absolute top-full left-full ml-2 mt-2 w-52 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
               <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH</span>
               <br />
               I agree with this complaint
@@ -55,7 +55,7 @@ const ComplaintPage = () => {
             >
               Downvote
             </button>
-            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-52 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+            <div className="absolute top-full left-full ml-2 mt-2 w-52 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
               <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH</span>
               <br />
               I disagree with this complaint
@@ -70,7 +70,7 @@ const ComplaintPage = () => {
             >
               Appeal
             </button>
-            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-56 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+            <div className="absolute top-full left-full ml-2 mt-2 w-56 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
               <span style={{ color: "#0edbe5" }}>Cost: 0.15 ETH</span>
               <br />
               Appeal to the DAO for site removal (coming soon)
