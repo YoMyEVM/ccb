@@ -16,7 +16,7 @@ export default function Leaderboard() {
             key={category}
             onClick={() => setSelectedCategory(category)}
             className={`px-4 py-2 text-sm font-medium text-white border border-gray-700
-              ${selectedCategory === category ? "bg-pink-600" : "bg-zinc-800 hover:bg-zinc-700"}
+              ${selectedCategory === category ? "bg-[hsl(294,100%,60%)]" : "bg-zinc-800 hover:bg-zinc-700"}
               first:rounded-l-lg last:rounded-r-lg`}
           >
             {category}
