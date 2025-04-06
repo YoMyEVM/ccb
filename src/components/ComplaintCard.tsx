@@ -1,30 +1,45 @@
-// src/components/ComplaintCard.tsx
-
+// ComplaintCard.tsx
 import { Link } from "react-router-dom";
 
 interface ComplaintCardProps {
   subject: string;
-  accused: string;
   submittedBy: string;
-  href: string;
+  accused: string;
 }
 
-export function ComplaintCard({ subject, accused, submittedBy, href }: ComplaintCardProps) {
+export function ComplaintCard({ submittedBy, accused, subject }: ComplaintCardProps) {
+  const truncateAddress = (address: string) =>
+    `${address.slice(0, 10)}...${address.slice(-4)}`;
+
+  const accentPink = "hsl(294, 100%, 60%)";
+
   return (
-    <Link to={`/complaint/${subject}`} className="flex flex-col rounded-lg hover:bg-zinc-900 transition-colors overflow-hidden" style={{ width: "calc(20% - 1.5rem)" }}>
-      <div
-        className="p-4 text-center"
-        style={{
-          border: "1px solid hsl(294, 100%, 60%)",
-        }}
-      >
-        <p className="text-xl" style={{ color: "#fd01f5" }}>
-          <strong>Complaint Against:</strong> {accused}
-        </p>
-        <h2 className="text-2xl font-semibold mb-2 text-white">{subject}</h2>
-        <p className="text-xl" style={{ color: "#01fcfc" }}>
-          <strong>By:</strong> {submittedBy}
-        </p>
+    <Link
+      to={`/complaint/${encodeURIComponent(subject)}`} // <-- Dynamic URL with complaint subject
+      className="flex flex-col p-6 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 w-full max-w-[350px] h-[250px] justify-end"
+      style={{ background: "linear-gradient(to right, #2a2a2a, #1f1f1f)" }}
+    >
+      <div className="text-md text-gray-300 mb-2">
+        <span className="font-semibold" style={{ color: accentPink }}>Against:</span>
+        <div className="text-sm text-teal-400 mb-4">
+          {truncateAddress(accused)}
+        </div>
+      </div>
+
+      <div className="text-md text-gray-300 mb-2">
+        <span className="font-semibold" style={{ color: accentPink }}>By:</span>
+        <div className="text-sm text-teal-400 mb-4">
+          {truncateAddress(submittedBy)}
+        </div>
+      </div>
+
+      <div className="text-center mt-auto">
+        <button
+          className="text-white font-bold py-2 px-4 rounded-md transition-colors duration-300"
+          style={{ backgroundColor: accentPink }}
+        >
+          View Details
+        </button>
       </div>
     </Link>
   );

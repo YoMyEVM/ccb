@@ -9,14 +9,12 @@ export function App() {
   const newestComplaints = complaintData.slice(5, 10);  // Next 5 complaints for "Newest Complaints"
 
   return (
-    <main className="min-h-[100vh] flex flex-col items-center justify-start container max-w-screen-lg mx-auto">
-      <div className="py-4 w-full">
-        {/* Render the "Trending Complaints" row */}
-        <CardRow title="Trending Complaints" cards={trendingComplaints} />
+    <main className="min-h-screen bg-black text-white flex flex-col items-start gap-12 px-6 py-10">
+      {/* Render the "Trending Complaints" row */}
+      <CardRow title="Trending Complaints" cards={trendingComplaints} />
 
-        {/* Render the "Newest Complaints" row */}
-        <CardRow title="Newest Complaints" cards={newestComplaints} />
-      </div>
+      {/* Render the "Newest Complaints" row */}
+      <CardRow title="Newest Complaints" cards={newestComplaints} />
     </main>
   );
 }
