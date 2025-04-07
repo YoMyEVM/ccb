@@ -53,7 +53,7 @@ export const CardRow = ({ title, cards }: CardRowProps) => {
       {/* Scrollable Row */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-scroll gap-4 scroll-smooth snap-x snap-mandatory px-10"
+        className="flex overflow-x-auto gap-4 scroll-smooth snap-x snap-mandatory px-4 sm:px-10"
         style={{
           ...hideScrollbarStyles,
         }}

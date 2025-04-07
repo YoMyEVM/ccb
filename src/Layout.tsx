@@ -4,7 +4,7 @@ import { Navbar } from "./Navbar";
 
 export default function Layout() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen w-full overflow-x-hidden bg-black text-white">
       <Navbar />
       <main className="pt-4">
         <Outlet />

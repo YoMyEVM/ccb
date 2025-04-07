@@ -78,11 +78,13 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-      <div
-        ref={modalRef}
-        className="bg-zinc-900 text-white p-3 rounded-2xl shadow-2xl max-w-md w-full border"
-        style={{ borderColor: "hsl(294, 100%, 60%)" }}
-      >
+        <div
+          ref={modalRef}
+          className="bg-zinc-900 text-white p-3 rounded-2xl shadow-2xl max-w-md w-full border overflow-x-hidden"
+          style={{ borderColor: "hsl(294, 100%, 60%)" }}
+        >
+
+
         <div className="flex flex-col items-center space-y-3">
           <h2
             className="text-2xl -mt-12 font-bold text-center"

@@ -9,8 +9,8 @@ export function App() {
   const newestComplaints = complaintData.slice(5, 10);  // Next 5 complaints for "Newest Complaints"
 
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-start gap-12 px-6 py-10">
-      {/* Render the "Trending Complaints" row */}
+    <main className="min-h-screen w-full overflow-x-hidden bg-black text-white flex flex-col items-start gap-12 px-6 py-10">
+    {/* Render the "Trending Complaints" row */}
       <CardRow title="Trending Complaints" cards={trendingComplaints} />
 
       {/* Render the "Newest Complaints" row */}

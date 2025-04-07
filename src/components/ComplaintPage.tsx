@@ -48,7 +48,7 @@ const ComplaintPage = () => {
 
       <div className="mt-6">
         <h2 className="text-lg">Votes: {votes}</h2>
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4 mt-4 flex-wrap">
           {/* Upvote button with tooltip */}
           <div className="relative group">
             <button
@@ -57,7 +57,7 @@ const ComplaintPage = () => {
             >
               Upvote
             </button>
-            <div className="absolute top-full left-full ml-2 mt-2 w-60 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[90vw] max-w-xs sm:w-60 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <span style={{ color: "#0edbe5" }}>Cost: 0.0007 ETH{formatUsd(0.0007)}</span>
               <br />
               I agree with this complaint or found it helpful
@@ -72,7 +72,7 @@ const ComplaintPage = () => {
             >
               Downvote
             </button>
-            <div className="absolute top-full left-full ml-2 mt-2 w-60 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[90vw] max-w-xs sm:w-60 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <span style={{ color: "#0edbe5" }}>Cost: 0.0009 ETH{formatUsd(0.0009)}</span>
               <br />
               I disagree with this complaint or didn't find it helpful
@@ -87,7 +87,7 @@ const ComplaintPage = () => {
             >
               Appeal
             </button>
-            <div className="absolute top-full left-full ml-2 mt-2 w-64 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[90vw] max-w-xs sm:w-64 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <span style={{ color: "#0edbe5" }}>Cost: 0.12 ETH{formatUsd(0.12)}</span>
               <br />
               Appeal to the DAO for site removal (coming soon)
