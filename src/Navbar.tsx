@@ -7,6 +7,7 @@ import {
   createWallet,
 } from "thirdweb/wallets";
 import { CreateModal } from "./components/CreateModal";
+
 const wallets = [
   inAppWallet({
     auth: {
@@ -71,42 +72,44 @@ export function Navbar() {
           </div>
 
           {/* Wallet + CTA */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 mt-2 sm:mt-0 w-full sm:w-auto justify-center sm:justify-end">
-            <button
-              className="px-4 py-2 border rounded text-sm text-white bg-black w-full sm:w-auto"
-              style={{ borderColor: "hsl(294, 100%, 60%)", borderWidth: 1 }}
-              onClick={handleCheckIn}
-            >
-              Got Beef?
-            </button>
+          <div className="flex flex-col sm:flex-row items-center gap-3 mt-2 sm:mt-0 w-full sm:w-auto justify-center sm:justify-end sm:flex-nowrap">
+            <div className="flex flex-row gap-3 w-full sm:w-auto">
+              <button
+                className="px-4 py-2 border rounded text-sm text-white bg-black w-full sm:w-auto"
+                style={{ borderColor: "hsl(294, 100%, 60%)", borderWidth: 1 }}
+                onClick={handleCheckIn}
+              >
+                Got Beef?
+              </button>
 
-            <div className="relative group w-full sm:w-auto">
-              <ConnectButton
-                client={client}
-                wallets={wallets}
-                theme={darkTheme({
-                  colors: { accentText: "hsl(294, 100%, 60%)" },
-                })}
-                connectButton={{ label: "Sign In" }}
-                connectModal={{
-                  size: "compact",
-                  showThirdwebBranding: false,
-                }}
-              />
-              <div className="absolute left-1/2 -translate-x-1/2 mt-2 max-w-xs w-[90vw] sm:w-64 p-3 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-                <span style={{ color: "#0edbe5" }}>
-                  Network transactions cost ~3 cents.
-                </span>
-                <br />
-                <br />
-                <span>
-                  Please keep at least $1 worth of ETH in your wallet.
-                  <br />
-                  <br />
-                  <span style={{ color: "#ff6fff" }}>
-                    Use “Buy” to get ETH.
+              <div className="relative group w-full sm:w-auto">
+                <ConnectButton
+                  client={client}
+                  wallets={wallets}
+                  theme={darkTheme({
+                    colors: { accentText: "hsl(294, 100%, 60%)" },
+                  })}
+                  connectButton={{ label: "Sign In" }}
+                  connectModal={{
+                    size: "compact",
+                    showThirdwebBranding: false,
+                  }}
+                />
+                <div className="absolute left-1/2 -translate-x-1/2 mt-2 max-w-xs w-[90vw] sm:w-64 p-3 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+                  <span style={{ color: "#0edbe5" }}>
+                    Network transactions cost ~3 cents.
                   </span>
-                </span>
+                  <br />
+                  <br />
+                  <span>
+                    Please keep at least $1 worth of ETH in your wallet.
+                    <br />
+                    <br />
+                    <span style={{ color: "#ff6fff" }}>
+                      Use “Buy” to get ETH.
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
