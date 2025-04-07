@@ -88,7 +88,7 @@ const ComplaintPage = () => {
               Appeal
             </button>
             <div className="absolute top-full left-0 mt-2 sm:left-1/4 w-[90vw] max-w-xs sm:w-64 p-2 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <span style={{ color: "#0edbe5" }}>Cost: 0.125 ETH{formatUsd(0.12)}</span>
+              <span style={{ color: "#0edbe5" }}>Cost: TBD ETH{formatUsd(0.0)}</span>
               <br />
               Appeal to the DAO for site removal (currently disabled)
             </div>
