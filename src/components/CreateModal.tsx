@@ -26,7 +26,7 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
           "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
         );
         const data = await res.json();
-        const usdValue = (data.ethereum.usd * 0.0026).toFixed(2);
+        const usdValue = (data.ethereum.usd * 0.002635).toFixed(2);
         setEthPrice(usdValue);
       } catch (err) {
         console.error("Failed to fetch ETH price:", err);
@@ -118,7 +118,7 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
               borderColor: 'hsl(294, 100%, 60%)',
             }}
           >
-            Submit Complaint for 0.0026 ETH{ethPrice ? ` ($${ethPrice})` : ''}
+            Submit Complaint for 0.002635 ETH{ethPrice ? ` ($${ethPrice})` : ''}
           </button>
         </div>
 
