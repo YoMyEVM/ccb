@@ -22,7 +22,7 @@ export default function About() {
       <h2 className="text-xl font-semibold text-[#0edbe5] mb-2">📈 Voting System</h2>
       <p className="text-sm mb-4">
         Each upvote or downvote costs <strong>0.00075 ETH</strong>. When someone upvotes your complaint, <strong>0.00025 ETH</strong> is automatically rewarded to you as the original poster.
-        That means once <strong>12 users</strong> find your complaint helpful, you break even. After that, you earn more than you paid.
+        That means once <strong>12 users</strong> find your complaint helpful, you break even. After that, you earn with every upvote that follows.
       </p>
 
       <h2 className="text-xl font-semibold text-yellow-400 mb-2">🪙 Token + DAO (Coming Soon)</h2>
