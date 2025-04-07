@@ -128,7 +128,7 @@ export function Navbar() {
               Please Sign In
             </h2>
             <p className="text-sm text-center mb-4">
-              You must be connected to your wallet to Check-In.
+              You must be connected to your wallet to Submit.
             </p>
             <div className="flex justify-center">
               <button
