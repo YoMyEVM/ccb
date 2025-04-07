@@ -63,6 +63,9 @@ export function Navbar() {
 
           {/* Center Navigation */}
           <div className="w-full sm:w-auto flex justify-center gap-6 mt-2 sm:mt-0">
+            <Link to="/dashboard" className="text-white text-lg sm:text-2xl hover:text-[#0edbe5]">
+              Dashboard
+            </Link>
             <Link to="/leaderboard" className="text-white text-lg sm:text-2xl hover:text-[#0edbe5]">
               Leaderboard
             </Link>

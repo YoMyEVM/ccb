@@ -8,6 +8,7 @@ import { App } from "./App";
 
 import About from "./pages/About";
 import Leaderboard from "./pages/Leaderboard";
+import Dashboard from "./pages/Dashboard";
 import Layout from "./Layout";
 import ComplaintPage from "./components/ComplaintPage"; // Import your new complaint page component
 
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
             <Route index element={<App />} />
             <Route path="about" element={<About />} />
             <Route path="leaderboard" element={<Leaderboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="complaint/:id" element={<ComplaintPage />} /> {/* Dynamic route */}
           </Route>
         </Routes>
