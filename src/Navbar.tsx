@@ -106,7 +106,7 @@ export function Navbar() {
                     <br />
                     <br />
                     <span style={{ color: "#ff6fff" }}>
-                      Use “Buy” to get ETH.
+                      Use “Buy” to get or bridge ETH.
                     </span>
                   </span>
                 </div>
