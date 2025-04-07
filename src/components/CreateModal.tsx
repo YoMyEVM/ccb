@@ -26,7 +26,7 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
           "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
         );
         const data = await res.json();
-        const usdValue = (data.ethereum.usd * 0.002635).toFixed(2);
+        const usdValue = (data.ethereum.usd * 0.00275).toFixed(2);
         setEthPrice(usdValue);
       } catch (err) {
         console.error("Failed to fetch ETH price:", err);
@@ -98,7 +98,7 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
           <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-[90vw] sm:w-64 p-3 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
             To prevent spam and potential fraud we charge a fee to submit a complaint.
             <br /><br />
-            If others find it useful, you will receive a portion of fees from each upvote.
+            If others find it useful, you will receive a portion of fees from each upvote. Break even is 11 upvotes.
           </div>
 
           <button
@@ -118,7 +118,7 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
               borderColor: 'hsl(294, 100%, 60%)',
             }}
           >
-            Submit Complaint for 0.002635 ETH{ethPrice ? ` ($${ethPrice})` : ''}
+            Submit Complaint for 0.00275 ETH{ethPrice ? ` ($${ethPrice})` : ''}
           </button>
         </div>
 
