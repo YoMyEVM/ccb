@@ -95,16 +95,25 @@ export const CreateModal: React.FC<CreateModalProps> = ({ isOpen, onClose }) => 
 
           <ComplaintForm onSubmit={handleSubmit} error={error} />
 
-          <button
-            onClick={() => handleSubmit({ subject: '', accused: '', contractAddr: '', chain: '', evidenceUrl: '', description: '' })}
-            className="mt-2 w-full py-3 text-lg font-bold text-black border rounded hover:bg-zinc-800"
-            style={{
-              background: "hsl(136, 61.30%, 50.40%)",
-              borderColor: "hsl(294, 100%, 60%)",
-            }}
-          >
-            Submit Complaint for 0.0026 ETH{ethPrice ? ` ($${ethPrice})` : ""}
-          </button>
+          <div className="relative group w-full">
+            <button
+              onClick={() => handleSubmit({ subject: '', accused: '', contractAddr: '', chain: '', evidenceUrl: '', description: '' })}
+              className="w-full py-3 text-lg font-bold text-black border rounded hover:bg-zinc-800"
+              style={{
+                background: "hsl(136, 61.30%, 50.40%)",
+                borderColor: "hsl(294, 100%, 60%)",
+              }}
+            >
+              Submit Complaint for 0.0026 ETH{ethPrice ? ` ($${ethPrice})` : ""}
+            </button>
+
+            <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[90vw] sm:w-64 p-3 text-sm text-white bg-zinc-800 border border-zinc-700 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+              To prevent spam and potential fraud we charge a fee to submit a complaint.
+              <br /><br />
+              If others find it useful, you will receive a portion of fees from each upvote.
+            </div>
+          </div>
+
 
           <button
             onClick={onClose}
